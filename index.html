@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MeritDemo Login</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;width:100%;min-height:100%;font-family:Arial,Helvetica,sans-serif}
+body{background:#578b8b;color:#fff;zoom:70%}
+.login-section{
+  height:502px;
+  background:#578b8b;
+  padding-top:29px;
+}
+.login-wrap{
+  width:630px;
+  max-width:calc(100% - 32px);
+  margin:0 auto;
+}
+.logo{
+  height:80px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  position:relative;
+}
+.logo-image{
+  width:205px;
+  height:57px;
+  object-fit:contain;
+  display:block;
+}
+.logo-mark{
+  font-size:47px;
+  line-height:42px;
+  font-weight:bold;
+  letter-spacing:-6px;
+}
+.logo-copy{
+  margin-left:13px;
+  line-height:1;
+  padding-top:1px;
+}
+.logo-copy .name{
+  font-size:29px;
+  font-weight:bold;
+  letter-spacing:-1.2px;
+}
+.logo-copy .sub{
+  font-size:13px;
+  font-weight:bold;
+  margin-top:5px;
+  letter-spacing:.2px;
+}
+.top-arrow{
+  position:absolute;
+  right:8px;
+  top:4px;
+  font-size:31px;
+  font-weight:bold;
+}
+.field{
+  width:630px;
+  height:50px;
+  max-width:100%;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  margin-top:0;
+}
+.field + .field{margin-top:24px}
+.field-icon{
+  width:45px;
+  text-align:center;
+  color:#bfc1c2;
+  font-size:21px;
+}
+.field input{
+  height:100%;
+  width:100%;
+  border:0;
+  outline:0;
+  background:#fff;
+  color:#405b68;
+  font-size:20px;
+  font-weight:400;
+}
+.field input::placeholder{color:#405b68;opacity:1}
+.eye{
+  width:48px;
+  height:100%;
+  border:0;
+  background:#fff;
+  color:#b9bdbe;
+  font-size:20px;
+  cursor:pointer;
+}
+.save-row{
+  height:40px;
+  display:flex;
+  align-items:center;
+  margin-top:45px;
+  font-size:19px;
+}
+.toggle{
+  width:82px;
+  height:40px;
+  border:1px solid #111;
+  border-radius:22px;
+  background:#fff;
+  position:relative;
+  cursor:pointer;
+  margin-right:15px;
+}
+.toggle::after{
+  content:"";
+  position:absolute;
+  width:27px;
+  height:27px;
+  left:5px;
+  top:6px;
+  border-radius:50%;
+  background:#000;
+  transition:left .15s;
+}
+.toggle.on::after{left:49px}
+.login-btn{
+  width:630px;
+  max-width:100%;
+  height:60px;
+  margin-top:30px;
+  border:0;
+  border-radius:7px;
+  background:#e9e9e9;
+  color:#3c808a;
+  font-size:20px;
+  cursor:pointer;
+}
+.login-btn:hover{background:#f2f2f2}
+.status{
+  height:0;
+  text-align:center;
+  font-size:13px;
+  font-weight:bold;
+  position:relative;
+  top:5px;
+}
+.status.success{color:#dff7e8}
+.status.error{color:#ffe1e1}
+.links{
+  display:flex;
+  justify-content:space-between;
+  font-size:20px;
+  margin-top:26px;
+}
+.links span{cursor:pointer}
+.info{
+  height:119px;
+  background:#e9e9e9;
+  color:#3f7d82;
+}
+.info-inner{
+  width:1135px;
+  max-width:calc(100% - 32px);
+  height:100%;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+}
+.info-copy{
+  margin-left:0;
+  font-size:20px;
+  line-height:1.95;
+  font-weight:bold;
+}
+.help{
+  margin-left:340px;
+  background:#578b8b;
+  color:#fff;
+  border:0;
+  border-radius:6px;
+  width:78px;
+  height:63px;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.hero{
+  height:192px;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,#f00035 0 42px,transparent 42px),
+    linear-gradient(125deg,#eee 0 9%,transparent 9% 100%),
+    linear-gradient(90deg,#f7f7f7 0,#e5e5e5 35%,#cfd5d2 58%,#eee 100%);
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:67px;
+  width:138px;
+  height:125px;
+  background:#eee;
+  clip-path:polygon(0 0,100% 100%,0 100%);
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  left:31%;
+  top:0;
+  width:45%;
+  height:100%;
+  background:linear-gradient(90deg,rgba(160,165,160,.25),rgba(230,230,230,.08));
+}
+.footer{
+  height:74px;
+  background:#fff;
+  color:#111;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:16px;
+}
+@media(max-width:700px){
+  .login-section{height:auto;min-height:502px;padding-bottom:30px}
+  .info-inner{justify-content:center}
+  .help{margin-left:80px}
+}
+@media(max-width:520px){
+  .logo-copy .name{font-size:24px}
+  .logo-copy .sub{font-size:11px}
+  .field{height:50px}
+  .save-row{margin-top:35px}
+  .info{height:auto;min-height:130px}
+  .info-inner{gap:15px}
+  .info-copy{font-size:15px}
+  .help{margin-left:20px;width:70px;height:56px}
+  .hero{height:150px}
+  .footer{font-size:12px;text-align:center}
+}
+</style>
+</head>
+
+<body>
+
+<section class="login-section">
+  <div class="login-wrap">
+
+    <div class="logo">
+      <img class="logo-image" src="logo-header.png" alt="MeritDemo Credit Union UI">
+      <div class="top-arrow">⌃</div>
+    </div>
+
+    <div class="field">
+      <div class="field-icon">♟</div>
+      <input id="username" type="text" placeholder="Username" autocomplete="off">
+    </div>
+
+    <div class="field">
+      <div class="field-icon">♙</div>
+      <input id="password" type="password" placeholder="Password" autocomplete="off">
+      <button class="eye" id="eye" type="button" aria-label="Show password">◉</button>
+    </div>
+
+    <div class="save-row">
+      <div class="toggle" id="saveToggle"></div>
+      <span>Save Username</span>
+    </div>
+
+    <button class="login-btn" id="loginBtn" type="button">Log in</button>
+
+    <div class="status" id="status"></div>
+
+    <div class="links">
+      <span id="forgot">Forgot Login?</span>
+      <span id="signup">Sign Up</span>
+    </div>
+
+  </div>
+</section>
+
+<section class="info">
+  <div class="info-inner">
+    <div class="info-copy">
+      First time here? Click Sign Up.<br>
+      Click HELP to learn more.
+    </div>
+    <button class="help" id="help" type="button">HELP</button>
+  </div>
+</section>
+
+<section class="hero"></section>
+
+<footer class="footer">
+  Federally Insured by NCUA. Equal Housing Opportunity.
+</footer>
+
+<script>
+const USERNAME="demo";
+const PASSWORD="demo123";
+
+const username=document.getElementById("username");
+const password=document.getElementById("password");
+const loginBtn=document.getElementById("loginBtn");
+const status=document.getElementById("status");
+const saveToggle=document.getElementById("saveToggle");
+
+let saveUsername=false;
+
+const saved=localStorage.getItem("demo_username");
+if(saved){
+  username.value=saved;
+  saveUsername=true;
+  saveToggle.classList.add("on");
+}
+
+saveToggle.addEventListener("click",()=>{
+  saveUsername=!saveUsername;
+  saveToggle.classList.toggle("on",saveUsername);
+});
+
+document.getElementById("eye").addEventListener("click",()=>{
+  password.type=password.type==="password"?"text":"password";
+});
+
+loginBtn.addEventListener("click",()=>{
+  status.className="status";
+
+  if(username.value.trim()===USERNAME && password.value===PASSWORD){
+    if(saveUsername) localStorage.setItem("demo_username",username.value.trim());
+    else localStorage.removeItem("demo_username");
+
+    status.className="status success";
+    status.textContent="Login successful!";
+    window.location.assign("last.html");
+  }else{
+    status.className="status error";
+    status.textContent="Invalid demo username or password.";
+  }
+});
+
+password.addEventListener("keydown",e=>{
+  if(e.key==="Enter") loginBtn.click();
+});
+
+document.getElementById("forgot").addEventListener("click",()=>{
+  status.className="status";
+  status.textContent="Password recovery is not connected to this demo.";
+});
+
+document.getElementById("signup").addEventListener("click",()=>{
+  status.className="status";
+  status.textContent="Sign-up is not connected to this demo.";
+});
+
+document.getElementById("help").addEventListener("click",()=>{
+  status.className="status";
+  status.textContent="Demo login: demo / demo123";
+});
+</script>
+
+</body>
+</html>
